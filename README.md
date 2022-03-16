@@ -4,9 +4,9 @@ Section : I
 
 T Vijay Prashant : PES1UG19CS536
 
-V M Dhruthi : PES1UG19CS536
+V M Dhruthi : PES1UG19CS550
 
-Vishal R : PES1UG19CS550
+Vishal R : PES1UG19CS571
 
 Yashas K S : PES1UG19CS589
 
