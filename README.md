@@ -4,11 +4,19 @@ Section : I
 
 T Vijay Prashant : PES1UG19CS536
 
+Split (3.2 onwards)
+
 V M Dhruthi : PES1UG19CS550
+
+Split (2.3, 2.4, 3.1)
 
 Vishal R : PES1UG19CS571
 
+Split (1.4, 2.1, 2.2)
+
 Yashas K S : PES1UG19CS589
+
+Split (1.1, 1.2, 1.3)
 
 
 
