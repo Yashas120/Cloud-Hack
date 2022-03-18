@@ -1,1 +1,9 @@
 # define the configuration for mongo-express
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-express-configmap
+  labels:
+    app: mongo-express
+data:
+  database_url: mongodb-service
