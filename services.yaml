@@ -7,10 +7,10 @@ kind: Service
 metadata:
   name: mongodb-service
   labels:
-    app: mongodb
+    app: mongo
 spec:
   selector:
-    app: mongodb
+    app: mongo
   ports:
     - protocol: TCP
       port: 27017
