@@ -10,7 +10,7 @@ metadata:
   labels:
     app: mongodb
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: mongodb
@@ -83,7 +83,7 @@ metadata:
   labels:
     app: mongo-express
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: mongo-express
@@ -124,7 +124,7 @@ metadata:
   labels:
     app: flaskapi
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: flaskapi
