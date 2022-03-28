@@ -10,7 +10,7 @@ metadata:
   labels:
     app: mongodb
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: mongodb
@@ -83,7 +83,7 @@ metadata:
   labels:
     app: mongo-express
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: mongo-express
@@ -93,26 +93,26 @@ spec:
         app: mongo-express
     spec:
       containers:
-      - name: mongo-express
-        image: mongo-express
-        ports:
-          - containerPort: 8081
-        env:
-          - name: ME_CONFIG_MONGODB_ADMINUSERNAME
-            valueFrom:
-              secretKeyRef:
-                name: mongodb-secret
-                key: mongo-root-username
-          - name: ME_CONFIG_MONGODB_ADMINPASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: mongodb-secret
-                key: mongo-root-password
-          - name: ME_CONFIG_MONGODB_SERVER
-            valueFrom:
-              configMapKeyRef:
-                name: mongo-express-configmap
-                key: database_url 
+        - name: mongo-express
+          image: mongo-express
+          ports:
+            - containerPort: 8081
+          env:
+            - name: ME_CONFIG_MONGODB_ADMINUSERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-secret
+                  key: mongo-root-username
+            - name: ME_CONFIG_MONGODB_ADMINPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-secret
+                  key: mongo-root-password
+            - name: ME_CONFIG_MONGODB_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  name: mongo-express-configmap
+                  key: database_url 
 ---
 # define the `Deployment` for flask-app
 
@@ -124,7 +124,7 @@ metadata:
   labels:
     app: flaskapi
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: flaskapi
