@@ -2,71 +2,41 @@
 # '---' is used to separate the definitions of the components/resources
 
 # define the `Deployment` for the mongodb server
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   # creationTimestamp: null
-#   labels:
-#     app: mongo
-#   name: mongo
-# spec:
-#   replicas: 1
-#   selector:
-#     matchLabels:
-#       app: mongo
-#   template:
-#     metadata:
-#       # creationTimestamp: null
-#       labels:
-#         app: mongo
-#     spec:
-#       containers:
-#       - image: mongo
-#         name: mongo
-#         imagePullPolicy: Never
-#         env:
-#         - name: MONGO_INITDB_ROOT_USERNAME
-#           valueFrom:
-#             secretKeyRef:
-#               name: mongo-creds
-#               key: username
-#         - name: MONGO_INITDB_ROOT_PASSWORD
-#           valueFrom:
-#             secretKeyRef:
-#               name: mongo-creds
-#               key: password
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongo
+  name: mongodb-deployment
   labels:
-    app: mongo
+    app: mongodb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mongo
+      app: mongodb
   template:
     metadata:
       labels:
-        app: mongo
+        app: mongodb
     spec:
       containers:
-      - name: mongo
+      - name: mongodb
         image: mongo
         ports:
           - containerPort: 27017
         env:
-            - name: MONGO_INITDB_ROOT_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: mongo-creds
-                  key: username
-            - name: MONGO_INITDB_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: mongo-creds
-                  key: password  
+          - name: MONGO_INITDB_ROOT_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: mongodb-secret
+                key: mongo-root-username
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mongodb-secret
+                key: mongo-root-password  
+                  
+
 ---
 # define the `Deployment` for mongo-express
 # apiVersion: apps/v1
@@ -131,13 +101,13 @@ spec:
           - name: ME_CONFIG_MONGODB_ADMINUSERNAME
             valueFrom:
               secretKeyRef:
-                name: mongo-creds
-                key: username
+                name: mongodb-secret
+                key: mongo-root-username
           - name: ME_CONFIG_MONGODB_ADMINPASSWORD
             valueFrom:
               secretKeyRef:
-                name: mongo-creds
-                key: password
+                name: mongodb-secret
+                key: mongo-root-password
           - name: ME_CONFIG_MONGODB_SERVER
             valueFrom:
               configMapKeyRef:
