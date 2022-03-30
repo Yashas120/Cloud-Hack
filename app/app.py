@@ -69,6 +69,22 @@ def deletePost():
     # redirect to home page
     return redirect("/")
 
+@app.route('/random', methods=["GET"])
+def insertRandom():
+    if(request.method=="GET"):
+        
+        mylist = [
+            {"title": "Queenie", "author": "Candice Carty-Williams", "createdAt": datetime.now()},
+            {"title": "Flâneuse", "author": "Lauren Elkin", "createdAt": datetime.now()},
+            {"title": "Misery", "author": "Stephen King", "createdAt": datetime.now()},
+            {"title": "Ash", "author": "Malinda Lo", "createdAt": datetime.now()},
+            {"title": "Annihilation & Borne", "author": "Jeff VanderMeer", "createdAt": datetime.now()},
+            {"title": "Wanderers", "author": "Chuck Wendig", "createdAt": datetime.now()},
+            {"title": "The Devil Wears Prada", "author": "Lauren Weisberger", "createdAt": datetime.now()}     
+        ]
+        
+        db.posts.insert_many(mylist)
+    return redirect("/")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5001", debug=True)
